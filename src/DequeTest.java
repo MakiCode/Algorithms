@@ -17,7 +17,7 @@ public class DequeTest {
     deque.removeFirst(); //three
     deque.removeLast(); //two
     deque.removeFirst(); //one
-    assert deque.isEmpty();
+    assertTrue(deque.isEmpty());
   }
 
   @Test
@@ -27,12 +27,14 @@ public class DequeTest {
     for (int i = 0; i < numOfItems; i++) {
       deque.addFirst(i);
     }
-    assert deque.size() == numOfItems;
+    assertTrue(deque.size() == numOfItems);
   }
 
   @Test
   public void testAddFirst() {
-    fail("Not yet implemented");
+    Deque<String> deque = new Deque<String>();
+    deque.addFirst("First");
+    assertTrue(deque.removeFirst().equals("First"));
   }
 
   @Test
@@ -42,7 +44,9 @@ public class DequeTest {
 
   @Test
   public void testRemoveFirst() {
-    fail("Not yet implemented");
+    Deque<String> deque = new Deque<String>();
+    deque.addFirst("First");
+    d
   }
 
   @Test
@@ -50,7 +54,7 @@ public class DequeTest {
     Deque<String> deque = new Deque<String>();
     deque.addFirst("One");
     deque.addFirst("Two");
-    assert deque.removeLast().equals("One");
+    assertTrue(deque.removeLast().equals("One"));
   }
 
   @Test
