@@ -2,15 +2,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
-  // use the linked list implementation
-
-  private Node first;
-  private Node last;
-  private int numOfItems;
-
-  public Deque() {
-  } // construct an empty deque
-
   public boolean isEmpty() {
     return first == null && last == null;
   } // is the deque empty?
