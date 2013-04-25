@@ -2,11 +2,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class RandomizedQueue<Item> implements Iterable<Item> {
-  private Item[] a; // array of items
-  private int N; // number of elements on stack
+  private Item[] a;
+  private int N;
 
-  // create an empty stack
-  @SuppressWarnings("unchecked")
   public RandomizedQueue() {
     a = (Item[]) new Object[2];
   }
@@ -19,10 +17,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     return N;
   }
 
-  // resize the underlying array holding the elements
   private void resize(int capacity) {
     assert capacity >= N;
-    @SuppressWarnings("unchecked")
     Item[] temp = (Item[]) new Object[capacity];
     for (int i = 0; i < N; i++) {
       temp[i] = a[i];
@@ -30,16 +26,16 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     a = temp;
   }
 
-  // push a new item onto the stack
   public void enqueue(Item item) {
+    if (item == null) {
+      throw new NullPointerException();
+    }
     if (N == a.length) {
-      resize(2 * a.length); // double size of array if necessary
+      resize(2 * a.length);
     }
     a[N++] = item; // add item
   }
-
-  // TODO delete and return a random item then switch its point with the head of
-  // the list
+  
   public Item dequeue() {
     if (isEmpty()) {
       throw new NoSuchElementException("Stack underflow");
@@ -66,33 +62,41 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
   }
 
   public Iterator<Item> iterator() {
-    // the iterator returns things in a random order
-    return new Iterator<Item>() {
-      private Item[] array = a;
-      private int N = a.length;
+    return new RandomIterator();
+  }
 
-      @Override
-      public boolean hasNext() {
-        return N != 0;
-      }
+  private class RandomIterator implements Iterator<Item> {
+    private Item[] array;
+    private int numOfElements = N;
 
-      @Override
-      public Item next() {
-        if (!hasNext()) {
-          throw new NoSuchElementException();
-        }
-        int random = StdRandom.uniform(N);
-        Item item = array[random];
-        array[random] = array[N];
-        array[N] = null;
-        N--;
-        return item;
+    public RandomIterator() {
+      array = (Item[]) new Object[a.length];
+      for (int i = 0; i < a.length; i++) {
+        array[i] = a[i];
       }
+    }
 
-      @Override
-      public void remove() {
-        throw new UnsupportedOperationException();
+    @Override
+    public boolean hasNext() {
+      return numOfElements != 0;
+    }
+
+    @Override
+    public Item next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
       }
-    };
+      int random = StdRandom.uniform(numOfElements);
+      Item item = array[random];
+      array[random] = array[numOfElements - 1]; //for 0 based
+      array[numOfElements - 1] = null; //for 0 based
+      numOfElements--;
+      return item;
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
   }
 }

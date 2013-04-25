@@ -101,34 +101,35 @@ public class Deque<Item> implements Iterable<Item> {
   } // delete and return the item at the end deque
 
   public Iterator<Item> iterator() {
-    return new Iterator<Item>() {
-      private Node currentNode = first;
-
-      @Override
-      public boolean hasNext() {
-        return currentNode != null;
-      }
-
-      @Override
-      public Item next() {
-        if (!hasNext()) {
-          throw new NoSuchElementException();
-        }
-        Item item = currentNode.item;
-        currentNode = currentNode.next;
-        return item;
-      }
-
-      @Override
-      public void remove() {
-        throw new UnsupportedOperationException();
-      }
-
-    };
+    return new DequeIterator();
   } // return an iterator over items in order from front to end
+  
+  private class DequeIterator implements Iterator<Item> {
+    private Node currentNode = first;
+
+    @Override
+    public boolean hasNext() {
+      return currentNode != null;
+    }
+
+    @Override
+    public Item next() {
+      if (!hasNext()) {
+        throw new NoSuchElementException();
+      }
+      Item item = currentNode.item;
+      currentNode = currentNode.next;
+      return item;
+    }
+
+    @Override
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
+  }
 
   private class Node {
-    public Node prev; // TODO have not managed prev yet
+    private Node prev; 
     private Item item;
     private Node next;
   }
