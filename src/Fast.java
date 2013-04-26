@@ -8,13 +8,14 @@ public class Fast {
     StdDraw.setXscale(0,32768);
     StdDraw.setYscale(0,32768);
 
-    for (int i = 0; i < N; i++) {
+    for(int i = 0; i < N; i++) {
       int x = in.readInt();
       int y = in.readInt();
       Point point = new Point(x, y);
       point.draw();
       a[i] = point;
     }
+    
     // we load the points from the file into an array
     for (int j = 0; j < a.length; j++) {
       Point point = a[j];
@@ -41,5 +42,6 @@ public class Fast {
         }
       }
     }
+   System.out.println("Finished!");
   }
 }

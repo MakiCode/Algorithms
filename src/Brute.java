@@ -19,6 +19,8 @@ public class Brute {
           for (Point s : a) {
             if (p.slopeTo(q) == p.slopeTo(r) && p.slopeTo(r) == p.slopeTo(s)) {
               StdOut.println(p + " -> " + q + " -> " + r + " -> " + s);
+              // basic brute force implementation still need to solve the p->q->r->s
+              // and p->q->s->r etc. problem
             }
           }
         }
