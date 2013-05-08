@@ -20,14 +20,14 @@ public class KdTreeTest {
 	@Test
 	public void testInsertMultiple() {
 		KdTree kdTree = new KdTree();
-		Point2D point1 = new Point2D(10,10);
-		Point2D point2 = new Point2D(5,5);
-		Point2D point3 = new Point2D(15,15);
-		Point2D point4 = new Point2D(6,6);
-		Point2D point5 = new Point2D(4,4);
-		Point2D point6 = new Point2D(16,16);
-		Point2D point7 = new Point2D(14,14);
-		Point2D point8 = new Point2D(7,7);
+		Point2D point1 = new Point2D(10, 10);
+		Point2D point2 = new Point2D(5, 5);
+		Point2D point3 = new Point2D(15, 15);
+		Point2D point4 = new Point2D(6, 6);
+		Point2D point5 = new Point2D(4, 4);
+		Point2D point6 = new Point2D(16, 16);
+		Point2D point7 = new Point2D(14, 14);
+		Point2D point8 = new Point2D(7, 7);
 		kdTree.insert(point1);
 		kdTree.insert(point2);
 		kdTree.insert(point3);
